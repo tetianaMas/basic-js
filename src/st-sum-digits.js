@@ -12,7 +12,11 @@ import { NotImplementedError } from '../extensions/index.js';
  * For 91, the result should be 1 (9 + 1 = 10, 1 + 0 = 1)
  *
  */
-export default function getSumOfDigits(/* n */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+export default function getSumOfDigits(n) {
+  const RADIX = 10;
+  const arrNum = String(n).split('');
+  const res = arrNum.reduce(
+    (prev, curr) => parseInt(prev, RADIX) + parseInt(curr, RADIX)
+  );
+  return String(res).split('').length > 1 ? getSumOfDigits(res) : res;
 }
